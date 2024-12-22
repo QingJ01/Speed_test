@@ -1,0 +1,469 @@
+/* 共享样式 */
+:root {
+    --primary-color: #6366f1;
+    --primary-dark: #4f46e5;
+    --text-primary: #1f2937;
+    --text-secondary: #4b5563;
+    --background: #f3f4f6;
+    --card-background: #ffffff;
+    --nav-background: #ffffff;
+    --nav-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Noto Sans SC', 'Microsoft YaHei', sans-serif;
+    min-height: 100vh;
+    margin: 0;
+    background-color: var(--background);
+    background-image: 
+        radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.1) 0%, transparent 20%),
+        radial-gradient(circle at 90% 80%, rgba(99, 102, 241, 0.1) 0%, transparent 20%);
+}
+
+/* 导航栏样式 */
+.nav-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--nav-background);
+    box-shadow: var(--nav-shadow);
+    padding: 15px 0;
+    z-index: 1000;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 40px;
+}
+
+.nav-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.social-links {
+    display: flex;
+    gap: 10px;
+}
+
+.social-link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    padding: 8px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.social-link:hover {
+    color: var(--primary-color);
+    background-color: rgba(99, 102, 241, 0.1);
+    transform: translateY(-1px);
+}
+
+.social-icon {
+    width: 22px;
+    height: 22px;
+    opacity: 0.8;
+}
+
+.social-link:hover .social-icon {
+    opacity: 1;
+}
+
+.nav-link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.nav-link:hover {
+    color: var(--primary-color);
+    background-color: rgba(99, 102, 241, 0.1);
+}
+
+.nav-link.active {
+    color: var(--primary-color);
+    background-color: rgba(99, 102, 241, 0.1);
+}
+
+/* 共享的容器样式 */
+.main-container {
+    padding-top: 80px;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    width: 100%;
+    max-width: 500px;
+    padding: 20px;
+    margin: 0 auto;
+}
+
+/* 游戏卡片共享样式 */
+.game-card {
+    background-color: var(--card-background);
+    border-radius: 24px;
+    padding: 40px 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.game-card:hover {
+    transform: translateY(-5px);
+}
+
+/* 标题样式 */
+h1 {
+    color: var(--text-primary);
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+/* 说明文字样式 */
+.instruction {
+    color: var(--text-secondary);
+    margin-bottom: 30px;
+    line-height: 1.6;
+    font-size: 1.1rem;
+}
+
+/* 统计面板样式 */
+.stats {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-bottom: 30px;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.stat-label {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.stat-value {
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+/* 按钮容器 */
+.button-container {
+    margin: 30px 0;
+}
+
+/* 按钮基础样式 */
+button {
+    padding: 20px 40px;
+    font-size: 1.2rem;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 500;
+}
+
+button:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(99, 102, 241, 0.4);
+}
+
+button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 5px rgba(99, 102, 241, 0.4);
+}
+
+.button-icon {
+    font-size: 1.4rem;
+}
+
+/* 结果和反馈样式 */
+.result {
+    margin-top: 30px;
+    font-size: 2rem;
+    color: var(--text-primary);
+    font-weight: 700;
+    min-height: 48px;
+}
+
+.feedback {
+    margin-top: 15px;
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    min-height: 28px;
+    padding: 0 20px;
+}
+
+/* 反应测试特定样式 */
+.color-indicator {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.color-indicator.waiting {
+    background-color: #22c55e;
+}
+
+.color-indicator.ready {
+    background-color: #ef4444;
+    animation: pulse 0.5s ease-in-out;
+}
+
+.color-indicator.cheating {
+    background-color: #6b7280;
+}
+
+/* 动画效果 */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.result, .feedback {
+    animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.ready {
+    animation: pulse 1s infinite;
+}
+
+/* 响应式设计 */
+@media (max-width: 480px) {
+    .nav-container {
+        padding: 0 10px;
+    }
+    
+    .nav-link {
+        padding: 6px 12px;
+        font-size: 0.9rem;
+    }
+
+    .container {
+        padding: 15px;
+    }
+    
+    .game-card {
+        padding: 30px 20px;
+    }
+    
+    h1 {
+        font-size: 1.8rem;
+    }
+    
+    .instruction {
+        font-size: 1rem;
+    }
+    
+    button {
+        padding: 15px 30px;
+        font-size: 1.1rem;
+    }
+    
+    .result {
+        font-size: 1.6rem;
+    }
+    
+    .feedback {
+        font-size: 1rem;
+    }
+
+    .stats {
+        gap: 20px;
+    }
+
+    .stat-value {
+        font-size: 1.2rem;
+    }
+}
+
+/* 修改时间指示器样式 */
+.time-indicator {
+    position: relative;
+    width: 200px;
+    height: 50px;
+    margin: 20px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: transparent;
+    letter-spacing: -1px;
+}
+
+.time-indicator::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 3px;
+    background-color: var(--background);
+    border-radius: 1.5px;
+}
+
+.time-indicator::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 3px;
+    background-color: var(--primary-color);
+    border-radius: 1.5px;
+    transform-origin: left;
+    transform: scaleX(1);
+    transition: transform 0.1s linear;
+}
+
+.time-indicator.running::after {
+    animation: progress 10s linear forwards;
+}
+
+@keyframes progress {
+    from {
+        transform: scaleX(1);
+    }
+    to {
+        transform: scaleX(0);
+    }
+}
+
+@media (max-width: 480px) {
+    .time-indicator {
+        width: 160px;
+        height: 40px;
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-container {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        padding: 10px;
+    }
+    
+    .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .social-links {
+        justify-content: center;
+    }
+}
+
+/* Logo样式 */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 0;
+    color: var(--primary-color);
+    font-weight: 600;
+    font-size: 1.1rem;
+    text-decoration: none;  /* 如果logo是链接的话 */
+}
+
+.logo-icon {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+}
+
+.logo-text {
+    display: inline-block;
+}
+
+/* 移动端适配 */
+@media (max-width: 480px) {
+    .logo-text {
+        display: none;
+    }
+    
+    .logo-icon {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+/* 版权信息样式 */
+.copyright {
+    text-align: center;
+    padding: 20px;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+/* 修改社交图标大小 */
+.social-icon {
+    width: 22px;
+    height: 22px;
+    opacity: 0.8;
+}
+
+/* QQ图标特殊大小 */
+.social-link[title="QQ群"] .social-icon {
+    width: 24px;
+    height: 24px;
+}
