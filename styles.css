@@ -129,6 +129,10 @@ body {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     text-align: center;
     transition: transform 0.3s ease;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .game-card:hover {
@@ -174,6 +178,10 @@ h1 {
     color: var(--primary-color);
     font-size: 1.5rem;
     font-weight: 700;
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
 }
 
 /* 按钮容器 */
@@ -195,6 +203,13 @@ button {
     align-items: center;
     gap: 10px;
     font-weight: 500;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none;   /* Safari */
+    -khtml-user-select: none;    /* Konqueror HTML */
+    -moz-user-select: none;      /* Firefox */
+    -ms-user-select: none;       /* Internet Explorer/Edge */
+    user-select: none;           /* Non-prefixed version */
+    -webkit-tap-highlight-color: transparent; /* 移除点击高亮 */
 }
 
 button:hover {
@@ -219,6 +234,10 @@ button:active {
     color: var(--text-primary);
     font-weight: 700;
     min-height: 48px;
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
 }
 
 .feedback {
@@ -227,6 +246,10 @@ button:active {
     color: var(--text-secondary);
     min-height: 28px;
     padding: 0 20px;
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
 }
 
 /* 反应测试特定样式 */
@@ -485,6 +508,12 @@ button:active {
 
 /* 移动端导航栏样式 */
 @media (max-width: 768px) {
+    /* 导航栏调整 */
+    .nav-bar {
+        padding: 10px 0;
+        background-color: var(--nav-background);
+    }
+
     .nav-container {
         grid-template-columns: auto 1fr auto;
         padding: 0 10px;
@@ -496,7 +525,7 @@ button:active {
         display: inline-block !important;
     }
 
-    /* 移动端导航内容 */
+    /* 导航内容 */
     .nav-content {
         display: none;
         position: absolute;
@@ -524,7 +553,7 @@ button:active {
         padding: 12px;
     }
 
-    /* 移动端操作按钮组 */
+    /* 操作按钮组 */
     .nav-actions {
         display: flex;
         align-items: center;
@@ -536,6 +565,21 @@ button:active {
         display: flex;
         align-items: center;
         justify-content: center;
+    }
+
+    /* 主内容区域调整 */
+    .main-container {
+        padding-top: 60px;
+    }
+
+    .container {
+        padding: 10px;
+    }
+
+    .game-card {
+        padding: 30px 20px;
+        margin: 0 10px;
+        background-color: var(--card-background);
     }
 }
 
@@ -559,6 +603,19 @@ button:active {
         width: 20px;
         height: 20px;
     }
+
+    .main-container {
+        padding-top: 50px;
+    }
+
+    .container {
+        padding: 8px;
+    }
+
+    .game-card {
+        padding: 25px 15px;
+        background-color: var(--card-background);
+    }
 }
 
 /* PC端社交链接样式 */
@@ -577,92 +634,4 @@ button:active {
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-/* 移动端样式 */
-@media (max-width: 768px) {
-    .nav-container {
-        grid-template-columns: auto 1fr auto;
-        padding: 0 10px;
-        position: relative;
-    }
-
-    /* 确保移动端标题显示 */
-    .logo-text {
-        display: inline-block !important;
-    }
-
-    /* 移动端导航内容 */
-    .nav-content {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background-color: var(--nav-background);
-        padding: 15px;
-        box-shadow: var(--nav-shadow);
-        z-index: 1000;
-    }
-
-    .nav-content.active {
-        display: block;
-    }
-
-    .nav-links {
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .nav-link {
-        display: block;
-        text-align: center;
-        padding: 12px;
-    }
-
-    /* 移动端操作按钮组 */
-    .menu-toggle {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-}
-
-/* 移动端样式调整 */
-@media (max-width: 768px) {
-    .main-container {
-        padding-top: 60px;
-    }
-
-    .container {
-        padding: 10px;
-    }
-
-    .game-card {
-        padding: 30px 20px;
-        margin: 0 10px;
-    }
-
-    .nav-bar {
-        padding: 10px 0;
-    }
-
-    .nav-container {
-        padding: 0 10px;
-    }
-}
-
-/* 小屏幕进一步优化 */
-@media (max-width: 480px) {
-    .main-container {
-        padding-top: 50px;
-    }
-
-    .container {
-        padding: 8px;
-    }
-
-    .game-card {
-        padding: 25px 15px;
-    }
 }
