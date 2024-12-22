@@ -3,8 +3,8 @@
     // 只在一秒时间测试页面执行
     if (!document.getElementById('timeButton')) return;
 
-    let startTime;
-    let isHolding = false;
+    let startTime = 0;
+    let isPressed = false;
     let bestTime = localStorage.getItem('oneSecondBestTime') ? parseFloat(localStorage.getItem('oneSecondBestTime')) : Infinity;
     let lastTime = localStorage.getItem('oneSecondLastTime') ? parseFloat(localStorage.getItem('oneSecondLastTime')) : 0;
 
@@ -22,6 +22,22 @@
         lastTimeDiv.textContent = `${lastTime.toFixed(3)}秒`;
     }
 
+    function updateResult(timeDiff) {
+        resultDiv.textContent = `${timeDiff.toFixed(3)}秒`;
+        const difference = Math.abs(timeDiff - 1);
+        
+        if (difference < 0.1) {
+            feedbackDiv.textContent = '太厉害了！你的时间感知非常精准！🎯';
+        } else if (difference < 0.2) {
+            feedbackDiv.textContent = '很棒！差一点点就完美了！👏';
+        } else if (difference < 0.3) {
+            feedbackDiv.textContent = '不错，继续练习吧！💪';
+        } else {
+            feedbackDiv.textContent = '慢慢来，稳定节奏很重要！🎮';
+        }
+        
+        updateStats(timeDiff);
+    }
     
     function updateStats(time) {
         lastTime = time;
@@ -35,57 +51,62 @@
         lastTimeDiv.textContent = `${lastTime.toFixed(3)}秒`;
     }
 
-    timeButton.addEventListener('mousedown', function(e) {
-        isHolding = true;
-        startTime = new Date().getTime();
-        resultDiv.textContent = '';
-        feedbackDiv.textContent = '正在计时...';
-        timeButton.style.transform = 'scale(0.95)';
-    });
+    // 检测是否是移动设备
+    const isMobile = 'ontouchstart' in window;
 
-    timeButton.addEventListener('mouseup', function(e) {
-        if (!isHolding) return;
-        
-        const endTime = new Date().getTime();
-        const duration = (endTime - startTime) / 1000;
-        isHolding = false;
-        
-        timeButton.style.transform = 'scale(1)';
-        
-        resultDiv.style.animation = 'none';
-        resultDiv.offsetHeight;
-        resultDiv.style.animation = 'fadeIn 0.3s ease-out';
-        
-        resultDiv.textContent = `${duration.toFixed(3)}秒`;
-        
-        const difference = Math.abs(duration - 1);
-        let feedback;
-        
-        if (difference < 0.1) {
-            feedback = '太厉害了！你有着极其精确的时间感！ 🎯';
-        } else if (difference < 0.2) {
-            feedback = '很不错！你的时间感知相当准确！ 👏';
-        } else if (difference < 0.3) {
-            feedback = '还可以，继续练习会更好！ 💪';
-        } else {
-            feedback = '差距有点大，再试一次吧！ ⏱️';
-        }
-        
-        feedbackDiv.style.animation = 'none';
-        feedbackDiv.offsetHeight;
-        feedbackDiv.style.animation = 'fadeIn 0.3s ease-out';
-        feedbackDiv.textContent = feedback;
-        
-        updateStats(duration);
-    });
+    if (isMobile) {
+        // 移动端触摸事件
+        timeButton.addEventListener('touchstart', function(e) {
+            e.preventDefault();
+            if (!isPressed) {
+                isPressed = true;
+                startTime = new Date().getTime();
+                resultDiv.textContent = '';
+                feedbackDiv.textContent = '正在计时...';
+                timeButton.style.transform = 'scale(0.95)';
+            }
+        });
 
-    timeButton.addEventListener('mouseleave', function(e) {
-        if (isHolding) {
-            isHolding = false;
-            timeButton.style.transform = 'scale(1)';
-            feedbackDiv.textContent = '请保持按住按钮直到你认为一秒钟到了';
-        }
-    });
+        timeButton.addEventListener('touchend', function(e) {
+            e.preventDefault();
+            if (isPressed) {
+                const endTime = new Date().getTime();
+                const timeDiff = (endTime - startTime) / 1000;
+                isPressed = false;
+                timeButton.style.transform = '';
+                updateResult(timeDiff);
+            }
+        });
+    } else {
+        // PC端鼠标事件
+        timeButton.addEventListener('mousedown', function() {
+            if (!isPressed) {
+                isPressed = true;
+                startTime = new Date().getTime();
+                resultDiv.textContent = '';
+                feedbackDiv.textContent = '正在计时...';
+                timeButton.style.transform = 'scale(0.95)';
+            }
+        });
+
+        timeButton.addEventListener('mouseup', function() {
+            if (isPressed) {
+                const endTime = new Date().getTime();
+                const timeDiff = (endTime - startTime) / 1000;
+                isPressed = false;
+                timeButton.style.transform = '';
+                updateResult(timeDiff);
+            }
+        });
+
+        timeButton.addEventListener('mouseleave', function() {
+            if (isPressed) {
+                isPressed = false;
+                timeButton.style.transform = '';
+                feedbackDiv.textContent = '请保持按住按钮直到你认为一秒钟到了';
+            }
+        });
+    }
 })();
 
 // 双击速度测试游戏
@@ -332,7 +353,7 @@
 
     function getFeedback(score) {
         if (score >= 80) {
-            return '神级点击速度！你是连珠炮吗？⚡️';
+            return '神级点���速度！你是连珠炮吗？⚡️';
         } else if (score >= 70) {
             return '太厉害了！这速度堪比职业选手！🏆';
         } else if (score >= 60) {
