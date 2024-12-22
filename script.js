@@ -137,7 +137,7 @@
         } else if (time < 0.2) {
             return '太厉害了！这速度堪比职业选手！🏆';
         } else if (time < 0.25) {
-            return '很棒！你的反应速度相当快！👏';
+            return '很棒！你的的反应速度相当快！👏';
         } else if (time < 0.3) {
             return '不错的成绩，继续加油！💪';
         } else if (time < 0.4) {
@@ -392,3 +392,21 @@
     // 初始状态
     feedbackDiv.textContent = '点击开始按钮开始测试';
 })();
+
+// 移动端菜单切换
+document.addEventListener('DOMContentLoaded', function() {
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navContent = document.querySelector('.nav-content');
+
+    menuToggle.addEventListener('click', function(e) {
+        e.stopPropagation();
+        navContent.classList.toggle('active');
+    });
+
+    // 点击其他地方关闭菜单
+    document.addEventListener('click', function(e) {
+        if (!navContent.contains(e.target) && !menuToggle.contains(e.target)) {
+            navContent.classList.remove('active');
+        }
+    });
+});
